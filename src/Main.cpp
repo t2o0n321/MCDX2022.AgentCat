@@ -1,5 +1,6 @@
 #include "Platform/Platform.hpp"
 #include "resources/button.h"
+#include "resources/shell.h"
 
 int main()
 {
