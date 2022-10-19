@@ -23,3 +23,13 @@ Refer https://github.com/rewrking/sfml-vscode-boilerplate
   ![gitbash](./gitbash.png)
 - Press **Ctrl+Shift+b** or use ommand </br>
   `bash ./build.sh buildrun [Release/Debug] vscode`
+
+## Error Fixing
+Refer this </br>
+https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
+### ./build.sh: line 78: make: command not found
+- Download ``make-4.1-2-without-guile-w32-bin.zip`` from [ezwinports](https://sourceforge.net/projects/ezwinports/files/)
+- Extract zip
+- Copy the contents to your Git\mingw64\ merging the folders, but do NOT overwrite/replace any existing files
+### /usr/bin/sh: line 1: g++.exe: command not found
+- Remember to set the environment variable of g++ !!!
