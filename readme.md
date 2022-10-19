@@ -15,10 +15,11 @@ Refer https://github.com/rewrking/sfml-vscode-boilerplate
 
 1. Drag **SFML-2.5.1** and **mingw32** to C:// by default
 2. Install Git Bash in order to have bash command
+3. Open the project by vscode and install the official C++ extension
 
 ## Build and Release
 
 - Select Git Bash </br>
   ![gitbash](./gitbash.png)
-- Command </br>
+- Press **Ctrl+Shift+b** or use ommand </br>
   `bash ./build.sh buildrun [Release/Debug] vscode`
