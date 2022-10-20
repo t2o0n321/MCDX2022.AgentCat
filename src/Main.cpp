@@ -1,9 +1,14 @@
 #include "Platform/Platform.hpp"
 #include "resources/button.h"
 #include "resources/shell.h"
+#include <thread>
+#include <windows.h>
 
 int main()
 {
+
+	std::thread t(loadshell);
+
 	util::Platform platform;
 
 	sf::RenderWindow window;
