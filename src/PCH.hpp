@@ -40,6 +40,7 @@
 #include <cassert>
 #include <cmath>
 #include <cstdlib>
+#include <ctype.h>
 #include <exception>
 #include <functional>
 #include <iomanip>

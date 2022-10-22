@@ -43,7 +43,6 @@ void button::render(sf::RenderTarget& target)
 
 void button::update(const sf::Vector2f mousePos)
 {
-	// std::cout << this->getInnerString() << " last state: " << this->btnState << std::endl;
 	// idle
 	this->btnState = BTN_IDLE;
 	// hover

@@ -58,6 +58,13 @@ int main()
 	displayBar_.setFillColor(displayColor);
 	displayBar_.setPosition(sf::Vector2f(0, 0));
 	displayBar_.setSize(sf::Vector2f(600, 200));
+	sf::Text displayText;
+	displayText.setCharacterSize(40);
+	displayText.setFillColor(sf::Color::Black);
+	displayText.setFont(font);
+	// displayText.setPosition(30, 30);
+	// displayText.setString("0");
+	// displayBar displaybar(sf::Vector2f(0, 0), sf::Vector2f(600, 200), displayColor, font, sf::Color::Black, 40, "0");
 
 	/*
 		Math Logic
@@ -86,6 +93,11 @@ int main()
 		/*
 			Update Items
 		*/
+		displayText.setString(formula);
+		displayText.setPosition(
+			window.getSize().x - displayText.getGlobalBounds().width - 10,
+			displayBar_.getPosition().y + displayBar_.getGlobalBounds().height / 2 - displayText.getGlobalBounds().height / 2);
+
 		zero.update(mousePosv2f);
 		dot.update(mousePosv2f);
 		equal.update(mousePosv2f);
@@ -103,6 +115,8 @@ int main()
 		divide.update(mousePosv2f);
 		times.update(mousePosv2f);
 		minus.update(mousePosv2f);
+
+		// displaybar.update(formula);
 
 		/*
 			button action
@@ -235,13 +249,16 @@ int main()
 		}
 		else if (dot.isPressed())
 		{
-			formula += ".";
+			if (isdigit(formula[formula.size() - 1]))
+			{
+				formula += ".";
+			}
 			std::cout << ". pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (plus.isPressed())
 		{
-			if (formula != "0")
+			if (formula != "0" && isdigit(formula[formula.size() - 1]))
 			{
 				formula += "+";
 			}
@@ -250,23 +267,27 @@ int main()
 		}
 		else if (minus.isPressed())
 		{
-			if (formula != "0")
+			if (formula != "0" && isdigit(formula[formula.size() - 1]))
 			{
 				formula += "-";
+			}
+			else if (formula == "0")
+			{
+				formula = "-";
 			}
 			std::cout << "- pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (divide.isPressed())
 		{
-			if (formula != "0")
+			if (formula != "0" && isdigit(formula[formula.size() - 1]))
 			{
 				formula += "/";
 			}
 			std::cout << "/ pressed" << std::endl;
 			usleep(100000);
 		}
-		else if (times.isPressed())
+		else if (times.isPressed() && isdigit(formula[formula.size() - 1]))
 		{
 			if (formula != "0")
 			{
@@ -281,11 +302,14 @@ int main()
 			std::cout << "C pressed" << std::endl;
 			usleep(100000);
 		}
-		else if (equal.isPressed())
+		else if (equal.isPressed() && isdigit(formula[formula.size() - 1]))
 		{
 			// Calculate formula string
 			std::cout << "formula> " << formula << std::endl;
-			formula = "0";
+			std::stringstream ans;
+			ans << calculate(formula);
+			ans >> formula;
+			ans.clear();
 			std::cout << "= pressed" << std::endl;
 			usleep(100000);
 		}
@@ -298,7 +322,9 @@ int main()
 		/*
 			Render
 		*/
+		// displaybar.render(window);
 		window.draw(displayBar_);
+		window.draw(displayText);
 		window.draw(text);
 
 		zero.render(window);
