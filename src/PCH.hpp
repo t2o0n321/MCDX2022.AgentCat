@@ -32,6 +32,7 @@
 #include <memory>
 #include <set>
 #include <string>
+#include <unistd.h>
 #include <vector>
 
 // Additional C/C++ libs
