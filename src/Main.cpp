@@ -13,6 +13,12 @@ int main()
 
 	sf::RenderWindow window(sf::VideoMode(600, 950), "AgentCat | Just a Calculator", sf::Style::Close);
 	window.setFramerateLimit(60);
+	auto image = sf::Image();
+	if (!image.loadFromFile("./icon.jpg"))
+	{
+		std::cout << "Cannot load icon ... " << std::endl;
+	}
+	window.setIcon(image.getSize().x, image.getSize().y, image.getPixelsPtr());
 
 	sf::Font font;
 	font.loadFromFile("./Small.ttf");
@@ -127,7 +133,6 @@ int main()
 			{
 				formula += "0";
 			}
-			std::cout << "0 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (one.isPressed())
@@ -140,7 +145,6 @@ int main()
 			{
 				formula += "1";
 			}
-			std::cout << "1 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (two.isPressed())
@@ -153,7 +157,6 @@ int main()
 			{
 				formula += "2";
 			}
-			std::cout << "2 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (three.isPressed())
@@ -166,7 +169,6 @@ int main()
 			{
 				formula += "3";
 			}
-			std::cout << "3 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (four.isPressed())
@@ -179,7 +181,6 @@ int main()
 			{
 				formula += "4";
 			}
-			std::cout << "4 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (five.isPressed())
@@ -192,7 +193,6 @@ int main()
 			{
 				formula += "5";
 			}
-			std::cout << "5 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (six.isPressed())
@@ -205,7 +205,6 @@ int main()
 			{
 				formula += "6";
 			}
-			std::cout << "6 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (seven.isPressed())
@@ -218,7 +217,6 @@ int main()
 			{
 				formula += "7";
 			}
-			std::cout << "7 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (eight.isPressed())
@@ -231,7 +229,6 @@ int main()
 			{
 				formula += "8";
 			}
-			std::cout << "8 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (nine.isPressed())
@@ -244,7 +241,6 @@ int main()
 			{
 				formula += "9";
 			}
-			std::cout << "9 pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (dot.isPressed())
@@ -253,7 +249,6 @@ int main()
 			{
 				formula += ".";
 			}
-			std::cout << ". pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (plus.isPressed())
@@ -262,7 +257,6 @@ int main()
 			{
 				formula += "+";
 			}
-			std::cout << "+ pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (minus.isPressed())
@@ -275,7 +269,6 @@ int main()
 			{
 				formula = "-";
 			}
-			std::cout << "- pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (divide.isPressed())
@@ -284,7 +277,6 @@ int main()
 			{
 				formula += "/";
 			}
-			std::cout << "/ pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (times.isPressed() && isdigit(formula[formula.size() - 1]))
@@ -293,24 +285,20 @@ int main()
 			{
 				formula += "*";
 			}
-			std::cout << "* pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (clear.isPressed())
 		{
 			formula = "0";
-			std::cout << "C pressed" << std::endl;
 			usleep(100000);
 		}
 		else if (equal.isPressed() && isdigit(formula[formula.size() - 1]))
 		{
 			// Calculate formula string
-			std::cout << "formula> " << formula << std::endl;
 			std::stringstream ans;
 			ans << calculate(formula);
 			ans >> formula;
 			ans.clear();
-			std::cout << "= pressed" << std::endl;
 			usleep(100000);
 		}
 
